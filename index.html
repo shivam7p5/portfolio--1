@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shivam Singh | Software Developer</title>
+<meta name="description" content="Shivam Singh — software developer in the making. Integrated M.Tech IT at IIPS, DAVV Indore. Building real projects, competing in hackathons, learning DSA." />
+<meta name="author" content="Shivam Singh" />
+<meta name="theme-color" content="#3b82f6" />
+
+<!-- ============ SOCIAL PREVIEW (edit URLs after you deploy) ============ -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Shivam Singh | Software Developer" />
+<meta property="og:description" content="Software developer in the making. I shape ideas into experience." />
+<meta property="og:image" content="assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="assets/og-image.png" />
+
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ==========================================================================
+   1. DESIGN TOKENS  —  change colors here and the whole site updates
+   ========================================================================== */
+:root:root{
+  --bg:            #162c31;
+  --bg-soft:       #193237;
+  --bg-soft-2:     #203c41;
+  --line:          #2b484d;
+
+  --text:          #f1eee8;
+  --text-dim:      #a7a7a3;
+  --text-faint:    #737f81;
+
+  --blue:          #aebdce;
+  --blue-light:    #c5d0dc;
+  --cyan:          #8daeb0;
+  --violet:        #9aaebd;
+
+  --grad: linear-gradient(120deg,#f1eee8,#aebdce);
+
+  --nav-h: 68px;
+  --radius: 16px;
+  --maxw: 1140px;
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;
+}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+    var(--bg);
+
+  background-size: 64px 64px;
+  color:var(--text-dim);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--text);line-height:1.15;font-weight:700}
+::selection{background:var(--blue);color:#fff}
+
+:focus-visible{outline:2px solid var(--blue-light);outline-offset:3px;border-radius:6px}
+
+/* ambient glow blobs */
+.glow{position:fixed;border-radius:50%;filter:blur(130px);opacity:.3;pointer-events:none;z-index:0}
+.glow.g1{
+  width:520px;
+  height:520px;
+  background:#315158;
+  top:-180px;
+  left:-160px;
+  opacity:.08;
+}
+
+.glow.g2{
+  width:460px;
+  height:460px;
+  background:#315158;
+  top:45%;
+  right:-200px;
+  opacity:.06;
+}
+
+.glow.g3{
+  width:400px;
+  height:400px;
+  background:#315158;
+  bottom:-160px;
+  left:20%;
+  opacity:.05;
+}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:24px;position:relative;z-index:1}
+section{padding-block:104px;position:relative;z-index:1}
+
+/* section heading */
+.s-head{margin-bottom:52px}
+.s-head h2{font-size:clamp(1.9rem,4.5vw,2.75rem);letter-spacing:-.02em}
+.s-head p{margin-top:12px;max-width:60ch;color:var(--text-faint)}
+.s-rule{width:62px;height:4px;border-radius:4px;background:var(--grad);margin-top:18px}
+
+
+/* ==========================================================================
+   3. NAVBAR
+   ========================================================================== */
+header{
+  position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:50;
+  display:flex;align-items:center;
+  transition:background .3s,border-color .3s,backdrop-filter .3s;
+  border-bottom:1px solid transparent;
+}
+header.stuck{
+  background:rgba(3,7,18,.8);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;width:100%;
+     max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);
+       font-weight:700;font-size:1.05rem;color:var(--text)}
+.brand .mark{
+  width:34px;height:34px;border-radius:10px;background:var(--grad);
+  display:grid;place-items:center;color:#fff;font-size:.85rem;letter-spacing:.5px;
+}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  padding:8px 14px;border-radius:9px;font-size:.92rem;font-weight:500;
+  color:var(--text-dim);transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--text);background:var(--bg-soft-2)}
+.nav-links a.active{color:var(--blue-light);background:rgba(59,130,246,.1)}
+
+.burger{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);
+        place-items:center;color:var(--text)}
+.burger svg{width:20px;height:20px}
+
+/* ==========================================================================
+   4. HERO
+   ========================================================================== */
+.hero-name{
+  font-size:clamp(4rem,8vw,7.5rem);
+  letter-spacing:-.055em;
+  line-height:.88;
+}
+
+.name-line{
+  display:block;
+  white-space:nowrap;
+}
+
+.name-line > span{
+  display:inline-block;
+  color:var(--text);
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    color .25s ease;
+  cursor:default;
+}
+
+.name-line > span:hover{
+  transform:translateY(-14px);
+  color:#c6d1dc;
+}
+.name-line > span{
+  display:inline-block;
+  color:var(--text);
+  transition:
+    transform .4s cubic-bezier(.2,.8,.2,1),
+    color .25s ease;
+  cursor:default;
+}
+
+.name-line > span:hover{
+  transform:translateY(-16px) scale(1.04);
+  color:#cbd5df;
+}
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:var(--nav-h)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+
+.status{
+  display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;
+  border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);
+  font-size:.82rem;color:var(--blue-light);font-weight:500;margin-bottom:26px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);
+     animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+
+.hero h1{
+  font-size:clamp(4rem,8vw,7.5rem);
+  letter-spacing:-.055em;
+  line-height:.88;
+}
+.hero .lead-in{display:block;font-size:clamp(1rem,2vw,1.15rem);font-weight:500;
+               color:var(--text-faint);font-family:var(--font-body);margin-bottom:10px}
+.hero-tagline{
+  margin-top:36px;
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  color:var(--text);
+  line-height:1.3;
+}
+#role{color:var(--blue-light)}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--blue);
+       vertical-align:-3px;margin-left:3px;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+
+.hero p.bio{
+  margin-top:28px;
+  max-width:600px;
+  font-size:1rem;
+  line-height:1.65;
+  color:#929c9e;
+}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:11px;
+     font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s}
+.btn svg{width:17px;height:17px}
+.btn-primary{
+  background:#f1eee8;
+  color:#182a2e;
+  box-shadow:none;
+}
+
+.btn-primary:hover{
+  background:#ffffff;
+  color:#162c31;
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+.btn-ghost{
+  border:1px solid #3a5559;
+  color:#e5e3dd;
+  background:transparent;
+}
+
+.btn-ghost:hover{
+  border-color:#82969a;
+  color:#fff;
+  background:rgba(255,255,255,.03);
+  transform:translateY(-3px);
+}
+.socials{display:flex;gap:12px;margin-top:34px}
+.socials a{
+  width:42px;height:42px;border-radius:11px;border:1px solid var(--line);background:var(--bg-soft);
+  display:grid;place-items:center;color:var(--text-dim);
+  transition:color .2s,border-color .2s,transform .2s;
+}
+.socials a:hover{color:var(--blue-light);border-color:var(--blue);transform:translateY(-3px)}
+.socials svg{width:19px;height:19px}
+
+.hero-kicker{
+  font-family:monospace;
+  font-size:.92rem;
+  letter-spacing:.04em;
+  color:#9eafb5;
+  margin-bottom:28px;
+}
+
+/* portrait */
+.portrait{position:relative;justify-self:center;width:min(330px,80vw);aspect-ratio:1}
+.portrait::before{
+  content:"";position:absolute;inset:-14px;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--blue),var(--violet),var(--cyan),var(--blue));
+  opacity:.65;filter:blur(22px);animation:spin 14s linear infinite;
+}
+@keyframes spin{to{transform:rotate(1turn)}}
+.portrait img{
+  position:relative;width:100%;height:100%;object-fit:cover;border-radius:50%;
+  border:2px solid rgba(96,165,250,.45);background:var(--bg-soft);
+}
+
+/* ==========================================================================
+   5. STAT STRIP
+   ========================================================================== */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+       border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.stat{background:var(--bg-soft);padding:26px 20px;text-align:center}
+.stat b{display:block;font-family:var(--font-display);font-size:1.8rem;color:var(--text)}
+.stat span{font-size:.82rem;color:var(--text-faint)}
+
+/* ==========================================================================
+   6. ABOUT
+   ========================================================================== */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.about-photo{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
+             position:relative;background:var(--bg-soft)}
+.about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.about-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(3,7,18,.72),transparent 55%)}
+.about-copy p+p{margin-top:18px}
+.about-copy strong{color:var(--text);font-weight:600}
+
+.facts{list-style:none;margin-top:28px;display:grid;gap:12px}
+.facts li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem}
+.facts svg{width:18px;height:18px;color:var(--blue-light);flex-shrink:0;margin-top:5px}
+
+/* ==========================================================================
+   7. SKILLS
+   ========================================================================== */
+.skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.sgroup{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+        padding:26px;transition:border-color .25s,transform .25s}
+.sgroup:hover{border-color:rgba(59,130,246,.5);transform:translateY(-4px)}
+.sgroup h3{font-size:1.05rem;display:flex;align-items:center;gap:11px;margin-bottom:20px}
+.sgroup h3 .ic{width:34px;height:34px;border-radius:9px;background:rgba(59,130,246,.12);
+               display:grid;place-items:center;color:var(--blue-light)}
+.sgroup h3 svg{width:17px;height:17px}
+
+.bar{margin-bottom:16px}
+.bar .row{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:7px}
+.bar .row span:last-child{color:var(--text-faint);font-size:.78rem}
+.track{height:6px;border-radius:99px;background:var(--bg-soft-2);overflow:hidden}
+.fill{height:100%;border-radius:99px;background:var(--grad);width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{padding:7px 14px;border-radius:9px;background:var(--bg-soft-2);border:1px solid var(--line);
+      font-size:.85rem;color:var(--text-dim)}
+.chip.on{border-color:rgba(59,130,246,.45);color:var(--blue-light);background:rgba(59,130,246,.08)}
+
+/* ==========================================================================
+   8. PROJECTS
+   ========================================================================== */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:26px}
+.card{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+      overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s,box-shadow .25s}
+.card:hover{border-color:rgba(59,130,246,.55);transform:translateY(-6px);
+            box-shadow:0 20px 44px -26px rgba(59,130,246,.6)}
+.shot{aspect-ratio:16/9;background:var(--bg-soft-2);position:relative;overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .shot img{transform:scale(1.045)}
+.tag{position:absolute;top:13px;left:13px;padding:5px 12px;border-radius:7px;font-size:.73rem;
+     font-weight:600;background:rgba(3,7,18,.82);color:var(--blue-light);
+     border:1px solid rgba(59,130,246,.4);backdrop-filter:blur(6px)}
+.card-body{padding:24px;flex:1;display:flex;flex-direction:column}
+.card-body h3{font-size:1.22rem;margin-bottom:9px}
+.card-body p{font-size:.94rem;flex:1}
+.stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.stack span{font-size:.76rem;padding:4px 10px;border-radius:6px;background:var(--bg-soft-2);
+            color:var(--text-faint);border:1px solid var(--line)}
+.card-links{display:flex;gap:18px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.card-links a{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;
+              color:var(--blue-light);transition:gap .2s}
+.card-links a:hover{gap:11px}
+.card-links svg{width:15px;height:15px}
+
+/* ==========================================================================
+   9. TIMELINE (experience / education)
+   ========================================================================== */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(to bottom,var(--blue),var(--violet),transparent)}
+.tl-item{position:relative;padding-bottom:40px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-33px;top:6px;width:18px;height:18px;
+  border-radius:50%;background:var(--bg);border:3px solid var(--blue)}
+.tl-when{font-size:.8rem;color:var(--blue-light);font-weight:600;margin-bottom:5px}
+.tl-item h3{font-size:1.12rem}
+.tl-where{font-size:.9rem;color:var(--text-faint);margin-bottom:10px}
+.tl-item ul{margin-top:10px;padding-left:19px;font-size:.94rem}
+.tl-item li{margin-bottom:6px}
+.tl-item li::marker{color:var(--blue)}
+
+/* ==========================================================================
+   10. CONTACT
+   ========================================================================== */
+.contact-box{
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:22px;
+  padding:clamp(32px,5vw,60px);text-align:center;position:relative;overflow:hidden;
+}
+.contact-box::before{content:"";position:absolute;top:-130px;left:50%;transform:translateX(-50%);
+  width:420px;height:260px;background:var(--blue);filter:blur(120px);opacity:.2}
+.contact-box h2{font-size:clamp(1.8rem,4.5vw,2.6rem);letter-spacing:-.02em}
+.contact-box p{margin:16px auto 0;max-width:52ch}
+.contact-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
+
+footer{border-top:1px solid var(--line);padding-block:30px;font-size:.87rem;color:var(--text-faint)}
+.foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+.to-top{display:inline-flex;align-items:center;gap:7px;color:var(--text-dim)}
+.to-top:hover{color:var(--blue-light)}
+
+/* ==========================================================================
+   11. SCROLL REVEAL
+   ========================================================================== */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.seen{opacity:1;transform:none}
+
+/* ==========================================================================
+   12. RESPONSIVE
+   ========================================================================== */
+@media(max-width:940px){
+  .hero-grid{grid-template-columns:1fr;gap:44px;text-align:center;padding-block:60px}
+  .cta-row,.socials{justify-content:center}
+  .hero p.bio{margin-inline:auto}
+  .portrait{order:-1;width:min(240px,62vw)}
+  .about-grid{grid-template-columns:1fr;gap:34px}
+  .about-photo{max-width:340px;margin-inline:auto}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  section{padding-block:76px}
+  .burger{display:grid}
+  .nav-links{
+    position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;
+    gap:4px;padding:14px 24px 22px;background:rgba(3,7,18,.97);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);display:none;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 14px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+
+<!-- ======================= NAVBAR ======================= -->
+<header id="top-bar">
+  <nav class="nav">
+    <a href="#home" class="brand"><span class="mark">SS</span> Shivam Singh</a>
+    <div class="nav-links" id="menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-kicker">
+        Aspiring Full Stack Developer · Visual Creator
+      </div>
+
+      <h1 class="hero-name">
+        <span class="lead-in"></span>
+
+        <span class="name-line">
+          <span>S</span><span>h</span><span>i</span><span>v</span><span>a</span><span>m</span>
+        </span>
+
+        <span class="name-line">
+          <span>S</span><span>i</span><span>n</span><span>g</span><span>h</span>
+        </span>
+      </h1>
+
+      <div class="hero-tagline">
+        I shape ideas into experience.
+      </div>
+
+      <p class="bio">
+        I shape ideas into experience. Second-year Integrated M.Tech IT student at IIPS, DAVV Indore —
+        learning development seriously, shipping real projects, and competing in hackathons on the way to
+        becoming a software developer at a great technology company.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+          See my work
+        </a>
+        <!-- Put your PDF at assets/Shivam_Singh_Resume.pdf -->
+        <a class="btn btn-ghost" href="assets/Shivam_Singh_Resume.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download résumé
+        </a>
+      </div>
+
+      <div class="socials">
+        <a href="https://github.com/shivam7p5" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 00.5 12a11.5 11.5 0 007.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.38-3.88-1.38-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.3-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.3-.52-1.48.11-3.08 0 0 .97-.31 3.18 1.18a11 11 0 015.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.6.23 2.78.12 3.07.74.82 1.18 1.85 1.18 3.11 0 4.43-2.69 5.4-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.2.67.8.56A11.5 11.5 0 0023.5 12 11.5 11.5 0 0012 .5z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/shivam-singh-52a739384/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.19 1.46-2.19 2.97V21H9z"/></svg>
+        </a>
+        <a href="https://leetcode.com/u/shivam7p5/" target="_blank" rel="noopener" aria-label="LeetCode" title="LeetCode">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.48 2.35a1.4 1.4 0 011.98 1.98l-2.2 2.23 4.2 4.24h4.13a1.4 1.4 0 110 2.8h-4.14l-4.19 4.24 2.2 2.23a1.4 1.4 0 01-1.98 1.98l-6.4-6.47a5.6 5.6 0 010-7.9zM9.05 9.7a2.8 2.8 0 000 3.95l1.25 1.27 3.2-3.24-3.2-3.24z"/></svg>
+        </a>
+        <a href="https://x.com/shivam7p5" target="_blank" rel="noopener" aria-label="X" title="X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.22-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23zm-1.16 17.52h1.83L7.02 4.13H5.06z"/></svg>
+        </a>
+        <a href="mailto:shivam7p5@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- PROFILE PHOTO → replace assets/profile.jpg -->
+    <div class="portrait">
+      <img src="assets/profile.jpg" alt="Portrait of Shivam Singh"
+           onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22400%22 height=%22400%22 fill=%22%23111a2e%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%22110%22 fill=%22%233b82f6%22 font-family=%22sans-serif%22 text-anchor=%22middle%22 dy=%22.35em%22>SS</text></svg>'">
+    </div>
+  </div>
+</section>
+
+<!-- ======================= STATS ======================= -->
+<div class="wrap">
+  <div class="stats reveal">
+    <div class="stat"><b>2nd</b><span>Year, M.Tech IT</span></div>
+    <div class="stat"><b>2030</b><span>Expected graduation</span></div>
+    <div class="stat"><b>SIH</b><span>Hackathon 2026</span></div>
+    <div class="stat"><b>4</b><span>Languages spoken</span></div>
+  </div>
+</div>
+
+<!-- ======================= ABOUT ======================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <h2>About me</h2>
+      <div class="s-rule"></div>
+    </div>
+
+    <div class="about-grid">
+      <!-- SECOND PHOTO → replace assets/about.jpg -->
+      <div class="about-photo reveal">
+        <img src="assets/about.jpg" alt="Shivam Singh at work"
+             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22600%22><rect width=%22480%22 height=%22600%22 fill=%22%230b1220%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2226%22 fill=%22%23475569%22 font-family=%22sans-serif%22 text-anchor=%22middle%22>assets/about.jpg</text></svg>'">
+      </div>
+
+      <div class="about-copy reveal">
+        <p>
+          I'm <strong>Shivam Singh</strong>, from Jaunpur, Uttar Pradesh, now studying in Indore.
+          Programming genuinely interests me — the part I enjoy most is taking a rough idea and pushing it
+          until it actually runs in a browser and someone can use it.
+        </p>
+        <p>
+          Right now I'm building a solid base in <strong>C and C++</strong>, working through
+          <strong>data structures and algorithms</strong>, and getting comfortable on the web side with
+          JavaScript and Node.js. Alongside that I've been part of a team for
+          <strong>Smart India Hackathon 2026</strong>, which has taught me as much about working with people
+          as it has about code.
+        </p>
+        <p>
+          I'm a developer first, but years of video editing, motion graphics and colour grading changed how I
+          look at an interface — I notice spacing, timing, composition and colour before I notice anything else.
+        </p>
+
+        <ul class="facts">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 4 2 10l10 6 10-6z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>
+            <span>Integrated M.Tech in Information Technology — IIPS, DAVV Indore</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Jaunpur, Uttar Pradesh · currently based in Indore, Madhya Pradesh</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.3 6.6.8-4.9 4.6 1.3 6.8L12 17.2 6.1 20.5l1.3-6.8L2.5 9.1l6.6-.8z"/></svg>
+            <span>Goal: software developer at a strong technology company</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z"/></svg>
+            <span>Hindi (native) · English (professional) · French (basic)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SKILLS ======================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <h2>Skills</h2>
+      <p>An honest picture of where I stand today — including what I'm still working through.</p>
+      <div class="s-rule"></div>
+    </div>
+
+    <div class="skill-groups">
+
+      <div class="sgroup reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Languages</h3>
+        <div class="bar"><div class="row"><span>C</span><span>Strong foundation</span></div><div class="track"><i class="fill" data-w="85"></i></div></div>
+        <div class="bar"><div class="row"><span>C++</span><span>Strong foundation</span></div><div class="track"><i class="fill" data-w="82"></i></div></div>
+        <div class="bar"><div class="row"><span>JavaScript</span><span>Developing</span></div><div class="track"><i class="fill" data-w="58"></i></div></div>
+      </div>
+
+      <div class="sgroup reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>Web development</h3>
+        <div class="bar"><div class="row"><span>HTML</span><span>Strong</span></div><div class="track"><i class="fill" data-w="88"></i></div></div>
+        <div class="bar"><div class="row"><span>CSS</span><span>Strong</span></div><div class="track"><i class="fill" data-w="85"></i></div></div>
+        <div class="bar"><div class="row"><span>Node.js</span><span>Learning</span></div><div class="track"><i class="fill" data-w="35"></i></div></div>
+        <div class="chips" style="margin-top:14px">
+          <span class="chip">React — next up</span>
+          <span class="chip on">Git / GitHub — basics</span>
+        </div>
+      </div>
+
+      <div class="sgroup reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></span>Computer science</h3>
+        <div class="bar"><div class="row"><span>OOP</span><span>Decent foundation</span></div><div class="track"><i class="fill" data-w="62"></i></div></div>
+        <div class="bar"><div class="row"><span>DSA — arrays &amp; strings</span><span>In progress</span></div><div class="track"><i class="fill" data-w="40"></i></div></div>
+        <div class="chips" style="margin-top:14px">
+          <span class="chip">DBMS — upcoming</span>
+          <span class="chip">Operating systems — upcoming</span>
+          <span class="chip">Computer networks — upcoming</span>
+        </div>
+      </div>
+
+      <div class="sgroup reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>Design &amp; motion</h3>
+        <p style="font-size:.92rem;margin-bottom:16px">
+          The visual side that feeds back into how I build interfaces.
+        </p>
+        <div class="chips">
+          <span class="chip on">DaVinci Resolve</span>
+          <span class="chip on">Colour grading</span>
+          <span class="chip on">Motion graphics</span>
+          <span class="chip on">Video editing</span>
+          <span class="chip on">Canva</span>
+          <span class="chip">Figma — basic</span>
+          <span class="chip on">AI tools</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROJECTS ======================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <h2>Projects</h2>
+      <p>Things I've actually built and keep improving.</p>
+      <div class="s-rule"></div>
+    </div>
+
+    <div class="proj-grid">
+
+      <!-- ---- PROJECT CARD: copy this whole <article> block to add another ---- -->
+      <article class="card reveal">
+        <div class="shot">
+          <span class="tag">Web app</span>
+          <!-- PROJECT IMAGE → assets/project-momentum.jpg -->
+          <img src="assets/project-momentum.jpg" alt="Momentum Planner interface"
+               onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22><rect width=%22800%22 height=%22450%22 fill=%22%23111a2e%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2228%22 fill=%22%233b82f6%22 font-family=%22sans-serif%22 text-anchor=%22middle%22>Momentum Planner</text></svg>'">
+        </div>
+        <div class="card-body">
+          <h3>Momentum Planner</h3>
+          <p>
+            A habit and daily-goal tracker built around how students actually live — classes, revision blocks
+            and the small routines that slip. Users add habits, set daily goals and watch streaks build up
+            over time. Concept, ideation and product direction are mine; the build was AI-assisted.
+          </p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Backend</span></div>
+          <div class="card-links">
+            <a href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              Live demo
+            </a>
+            <a href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 00.5 12a11.5 11.5 0 007.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.38-3.88-1.38-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.3-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.3-.52-1.48.11-3.08 0 0 .97-.31 3.18 1.18a11 11 0 015.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.6.23 2.78.12 3.07.74.82 1.18 1.85 1.18 3.11 0 4.43-2.69 5.4-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.2.67.8.56A11.5 11.5 0 0023.5 12 11.5 11.5 0 0012 .5z"/></svg>
+              Source code
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- placeholder card: replace with your next project ---- -->
+      <article class="card reveal">
+        <div class="shot">
+          <span class="tag">In progress</span>
+          <img src="assets/project-two.jpg" alt="Next project"
+               onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22><rect width=%22800%22 height=%22450%22 fill=%22%230b1220%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2226%22 fill=%22%23475569%22 font-family=%22sans-serif%22 text-anchor=%22middle%22>assets/project-two.jpg</text></svg>'">
+        </div>
+        <div class="card-body">
+          <h3>Smart India Hackathon build</h3>
+          <p>
+            Working with a team on a real-world problem statement for SIH 2026 — scoping the problem,
+            splitting the work, and turning it into something practical rather than a demo that only runs once.
+            Details go up here once the build is public.
+          </p>
+          <div class="stack"><span>Team project</span><span>Web</span><span>2026</span></div>
+          <div class="card-links">
+            <a href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              Coming soon
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= JOURNEY ======================= -->
+<section id="journey">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <h2>Journey</h2>
+      <div class="s-rule"></div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-when">2026 · Ongoing</div>
+        <h3>Student Developer — Smart India Hackathon 2026</h3>
+        <div class="tl-where">Team participant</div>
+        <p>Working with a team to explore a real-world problem statement and develop a practical technology solution.</p>
+        <ul>
+          <li>Teamwork and dividing a build across people</li>
+          <li>Breaking a vague problem into something solvable</li>
+          <li>Shipping under a deadline instead of polishing forever</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-when">2025 — 2030 (expected)</div>
+        <h3>Integrated M.Tech, Information Technology</h3>
+        <div class="tl-where">IIPS, DAVV — Indore, Madhya Pradesh</div>
+        <p>Currently in second year. Core focus on programming fundamentals in C and C++, object-oriented design, and data structures and algorithms.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-when">Alongside</div>
+        <h3>Visual work — editing, motion, colour</h3>
+        <div class="tl-where">Self-taught · DaVinci Resolve</div>
+        <p>Video editing, motion graphics and colour grading. It's where my sense of timing, spacing and visual hierarchy comes from, and it shows up in everything I build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONTACT ======================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <h2>Let's build something</h2>
+      <p>
+        I'm looking for internships, hackathon teams and side projects where I can learn fast and contribute
+        properly. If that sounds like you, my inbox is open.
+      </p>
+      <div class="contact-row">
+        <a class="btn btn-primary" href="mailto:shivam7p5@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+          shivam7p5@gmail.com
+        </a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/shivam-singh-52a739384/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.19 1.46-2.19 2.97V21H9z"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr"></span> Shivam Singh · Built from scratch with HTML, CSS and JavaScript.</span>
+    <a class="to-top" href="#home">
+      Back to top
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+/* ============ 1. EDIT THE ROTATING HERO WORDS HERE ============ */
+const ROLES = [
+  "things that run.",
+  "with C and C++.",
+  "for the web.",
+  "with a team."
+];
+
+/* ---- typing effect ---- */
+(function(){
+  const el = document.getElementById('role');
+  if(!el) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = ROLES[0]; return; }
+  let i = 0, c = 0, del = false;
+  (function tick(){
+    const word = ROLES[i];
+    c += del ? -1 : 1;
+    el.textContent = word.slice(0, c);
+    let wait = del ? 45 : 85;
+    if(!del && c === word.length){ wait = 1600; del = true; }
+    else if(del && c === 0){ del = false; i = (i + 1) % ROLES.length; wait = 350; }
+    setTimeout(tick, wait);
+  })();
+})();
+
+/* ---- sticky navbar + active link ---- */
+const bar = document.getElementById('top-bar');
+const links = [...document.querySelectorAll('.nav-links a')];
+const secs = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+function onScroll(){
+  bar.classList.toggle('stuck', scrollY > 20);
+  let current = secs[0];
+  for(const s of secs){ if(scrollY >= s.offsetTop - 140) current = s; }
+  links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+}
+addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ---- mobile menu ---- */
+const burger = document.getElementById('burger'), menu = document.getElementById('menu');
+burger.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+menu.addEventListener('click', e => { if(e.target.tagName === 'A') menu.classList.remove('open'); });
+
+/* ---- scroll reveal + skill bars ---- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => {
+    if(!en.isIntersecting) return;
+    en.target.classList.add('seen');
+    en.target.querySelectorAll('.fill').forEach((f, n) => {
+      setTimeout(() => { f.style.width = f.dataset.w + '%'; }, 140 * n);
+    });
+    io.unobserve(en.target);
+  });
+}, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---- footer year ---- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
